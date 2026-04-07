@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - QuizMaster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>QuizMaster</h1>
+        <div id="user-info">
+            <span id="welcome-msg"></span>
+            <button onclick="logout()" class="btn btn-nav-action btn-danger">Logout</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Choose Your Quiz</h2>
+        <div class="card-container">
+            <!-- HTML Quiz -->
+            <div class="quiz-card">
+                <h3>HTML Quiz</h3>
+                <p>Test your knowledge of semantic tags and web structure.</p>
+                <button class="btn" onclick="startQuiz('html')">Start Quiz</button>
+            </div>
+            <!-- CSS Quiz -->
+            <div class="quiz-card">
+                <h3>CSS Quiz</h3>
+                <p>Master the art of layout, Flexbox, and Grid systems.</p>
+                <button class="btn" onclick="startQuiz('css')">Start Quiz</button>
+            </div>
+            <!-- JS Quiz -->
+            <div class="quiz-card">
+                <h3>JavaScript Quiz</h3>
+                <p>Functions, Closures, and DOM manipulation basics.</p>
+                <button class="btn" onclick="startQuiz('js')">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) window.location.href = 'login.html';
+        document.getElementById('welcome-msg').innerText = `Hello, ${user.name}!`;
+        
+        function startQuiz(type) { window.location.href = `quiz.html?type=${type}`; }
+        function logout() { localStorage.removeItem('currentUser'); window.location.href = 'login.html'; }
+    </script>
+</body>
+</html>
